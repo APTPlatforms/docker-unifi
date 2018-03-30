@@ -15,10 +15,11 @@ RUN chmod 0755 /docker-entrypoint.sh \
  && apt-get update \
  && mkdir -p /usr/share/man/man1 \
  && apt-get -y install \
+                 procps \
+                 gettext-base \
                  openjdk-8-jre-headless \
                  mongodb-server \
                  unifi \
-                 procps \
  && apt-get -y --purge autoremove \
  && rm -rf /var/lib/apt/lists/* /var/cache/apt/* ~/.cache \
  && mkdir -p /usr/lib/unifi/logs \

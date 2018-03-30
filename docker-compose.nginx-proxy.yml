@@ -27,9 +27,20 @@ services:
             - nginx-proxy
 
 
+    mongo:
+        image: mongo:3.6
+        volumes:
+            - mongo-data:/data/db
+
+
     unifi:
         restart: always
         image:   aptplatforms/unifi:latest
+        environment:
+            MONGO_HOST:     mongo
+            MONGO_PORT:     27017
+            MONGO_DB:       unifi
+            JAVA_Xmx:       512M
         ports:
             - "8080:8080/tcp" # unifi.http.port UAP inform controller
             - "8880:8880/tcp" # portal.http.port
@@ -46,10 +57,14 @@ services:
         volumes:
             - unifi-data:/usr/lib/unifi/data
             - ./data/unifi/usr/lib/unifi/data/backup:/usr/lib/unifi/data/backup
+        depends_on:
+            - mongo
 
 
 volumes:
     unifi-data:
+        external: true
+    mongo-data:
         external: true
 
 

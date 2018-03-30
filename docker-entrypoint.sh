@@ -2,8 +2,11 @@
 
 mkdir -p /usr/lib/unifi/data
 
-cat >>/usr/lib/unifi/data/system.properties <<_EOT_
-unifi.db.extraargs=--smallfiles
+envsubst >>/usr/lib/unifi/data/system.properties <<_EOT_
+db.mongo.local=false
+db.mongo.uri=mongodb://${MONGO_HOST}:${MONGO_PORT}/${MONGO_DB}
+statdb.mongo.uri=mongodb://${MONGO_HOST}:${MONGO_PORT}/${MONGO_DB}_stat
+unifi.db.name=${MONGO_DB}
 _EOT_
 
-java -Xmx256M -jar /usr/lib/unifi/lib/ace.jar start
+java -Xmx${JAVA_Xmx} -jar /usr/lib/unifi/lib/ace.jar start
