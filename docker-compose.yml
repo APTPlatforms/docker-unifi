@@ -1,0 +1,8 @@
+version: "2"
+
+services:
+    unifi:
+        image: aptplatforms/unifi:latest
+        build: .
+
+# vim: set filetype=yaml :
