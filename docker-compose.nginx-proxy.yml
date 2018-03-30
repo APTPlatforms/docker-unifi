@@ -1,0 +1,56 @@
+version: "2"
+
+services:
+    nginx-proxy:
+        restart:        always
+        image:          jwilder/nginx-proxy:alpine
+        container_name: nginx-proxy
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - /var/run/docker.sock:/tmp/docker.sock:ro
+            - ./data/nginx-proxy/usr/share/nginx/html:/usr/share/nginx/html
+            - ./data/nginx-proxy/etc/nginx/certs:/etc/nginx/certs:ro
+            - ./data/nginx-proxy/etc/nginx/conf.d:/etc/nginx/conf.d
+            - ./data/nginx-proxy/etc/nginx/vhost.d:/etc/nginx/vhost.d
+
+
+    nginx-letsencrypt:
+        restart:        always
+        image:          jrcs/letsencrypt-nginx-proxy-companion
+        container_name: nginx-letsencrypt
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock:ro
+            - ./data/nginx-proxy/etc/nginx/certs:/etc/nginx/certs:rw
+        volumes_from:
+            - nginx-proxy
+
+
+    unifi:
+        restart: always
+        image:   aptplatforms/unifi:latest
+        ports:
+            - "8080:8080/tcp" # unifi.http.port UAP inform controller
+            - "8880:8880/tcp" # portal.http.port
+            - "8843:8843/tcp" # portal.https.port
+            - "3478:3478/udp" # STUN
+            #- "8443:8443/tcp" # unifi.https.port controller GUI/API
+        environment:
+            VIRTUAL_HOST:      unifi.example.com
+            VIRTUAL_PROTO:     https
+            VIRTUAL_PORT:      "8443"
+            HTTPS_METHOD:      redirect
+            LETSENCRYPT_HOST:  unifi.example.com
+            LETSENCRYPT_EMAIL: admin@example.com
+        volumes:
+            - unifi-data:/usr/lib/unifi/data
+            - ./data/unifi/usr/lib/unifi/data/backup:/usr/lib/unifi/data/backup
+
+
+volumes:
+    unifi-data:
+        external: true
+
+
+# vim: set filetype=yaml :
