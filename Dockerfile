@@ -3,7 +3,7 @@ FROM debian:9-slim
 LABEL maintainer="Chris Cosby <chris.cosby@aptplatforms.com>"
 
 ARG DEBIAN_FRONTEND=noninteractive
-ARG UNIFI_CONTROLLER_VERSION=5.7.23
+ARG UNIFI_CONTROLLER_VERSION=5.8.24
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 COPY docker-build.sh /docker-build.sh
