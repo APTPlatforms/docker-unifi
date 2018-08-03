@@ -12,6 +12,6 @@ RUN /bin/sh /docker-build.sh && rm -f /docker-build.sh
 
 WORKDIR /usr/lib/unifi
 VOLUME /usr/lib/unifi/data
-EXPOSE 8443/tcp 8843/tcp 8880/tcp 8080/tcp 3478/udp
+EXPOSE 8080/tcp 8443/tcp 443/tcp 80/tcp 3478/udp
 
 ENTRYPOINT ["/docker-entrypoint.sh"]

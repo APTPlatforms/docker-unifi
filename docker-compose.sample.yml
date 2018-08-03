@@ -1,0 +1,54 @@
+version: "3.6"
+
+networks:
+  public_network:
+    external: true
+
+volumes:
+    unifi-data:
+        external: true
+
+services:
+    traefik:
+        image: traefik:1.6-alpine
+        container_name: traefik
+        restart: ${RESTART_MODE}
+        ports:
+            - "80:80"
+            - "443:443"
+        labels:
+            - traefik.enable=true
+            - traefik.docker.network=public_network
+            - traefik.frontend.rule=Host:traefik.${DOMAIN}
+            - traefik.port=8080
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock:ro
+            - ./traefik/traefik.toml:/traefik.toml:ro
+            - ./traefik/acme:/etc/traefik/acme
+        networks:
+          - public_network
+
+    unifi:
+        image: aptplatforms/unifi:latest
+        container_name: unifi
+        restart: ${RESTART_MODE}
+        labels:
+            - traefik.enable=true
+            - traefik.docker.network=public_network
+            - traefik.unifi.frontend.rule=Host:unifi.${DOMAIN}
+            - traefik.unifi.port=8443
+            - traefik.unifi.protocol=https
+            - traefik.portal.frontend.rule=Host:portal.${DOMAIN}
+            - traefik.portal.port=443
+            - traefik.portal.protocol=https
+            - traefik.frontend.passHostHeader=true
+        ports:
+            - "8080:8080/tcp" # unifi.http.port UAP inform controller
+            - "3478:3478/udp" # STUN
+        volumes:
+            - unifi-data:/usr/lib/unifi/data
+            - ./unifi/backup:/usr/lib/unifi/data/backup
+        networks:
+            - public_network
+
+# vim: set filetype=yaml :
