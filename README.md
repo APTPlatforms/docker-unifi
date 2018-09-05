@@ -4,7 +4,7 @@
 
 [![](https://images.microbadger.com/badges/image/aptplatforms/unifi:latest.svg)](https://microbadger.com/images/aptplatforms/unifi:latest) [![](https://img.shields.io/docker/automated/aptplatforms/unifi.svg)](https://hub.docker.com/r/aptplatforms/unifi/builds/) [![](https://img.shields.io/docker/pulls/aptplatforms/unifi.svg)](https://hub.docker.com/r/aptplatforms/unifi/) [![](https://img.shields.io/docker/stars/aptplatforms/unifi.svg)](https://hub.docker.com/r/aptplatforms/unifi/)
 
-[Ubiquiti UniFi Controller](https://www.ubnt.com/download/unifi/default/default/unifi-sdn-controller-5824-debianubuntu-linux) in a Docker container. Features include:
+[Ubiquiti UniFi Controller](https://www.ubnt.com/download/unifi/default/default/unifi-sdn-controller-5828-debianubuntu-linux) in a Docker container. Features include:
 
 - As small as possible and as large as necessary.
 - FROM [Debian 9](https://hub.docker.com/\_/debian/)
@@ -21,7 +21,10 @@
 
 ### Docker Tags
 
-* latest &rarr; 5.8.24
+* latest &rarr; 5.8.28
+
+- 5.8.28 &rarr; [Release Notes](https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-8-28-Stable-has-been-released/ba-p/2449036)
+    - `docker pull aptplatforms/unifi:5.8.28`
 
 - 5.8.24 &rarr; [Release Notes](https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-8-24-Stable-has-been-released/ba-p/2404580)
     - `docker pull aptplatforms/unifi:5.8.24`

@@ -20,7 +20,7 @@ RUN echo 'deb http://www.ubnt.com/downloads/unifi/debian stable ubiquiti' >/etc/
 RUN apt-get update
 
 # Install the specific controller package
-ARG UNIFI_CONTROLLER_VERSION=5.8.24
+ARG UNIFI_CONTROLLER_VERSION=5.8.28
 RUN curl -s -o /tmp/unifi.deb https://dl.ubnt.com/unifi/$UNIFI_CONTROLLER_VERSION/unifi_sysvinit_all.deb
 RUN gdebi -n /tmp/unifi.deb
 
