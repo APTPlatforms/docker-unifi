@@ -18,7 +18,7 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
 # Retrieve UniFi signing keys and install the specific controller package
-ARG UNIFI_CONTROLLER_VERSION=5.8.28
+ARG UNIFI_CONTROLLER_VERSION=5.8.30
 RUN curl -s -o /etc/apt/trusted.gpg.d/unifi-repo.gpg https://dl.ubnt.com/unifi/unifi-repo.gpg \
  && echo 'deb http://www.ubnt.com/downloads/unifi/debian stable ubiquiti' >/etc/apt/sources.list.d/ubnt-unifi.list \
  && curl -s -o /tmp/unifi.deb https://dl.ubnt.com/unifi/$UNIFI_CONTROLLER_VERSION/unifi_sysvinit_all.deb \

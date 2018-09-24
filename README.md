@@ -21,7 +21,8 @@
 
 ### Docker Tags
 
-* latest &rarr; 5.8.28
+- 5.8.30 (latest) &rarr; [Release Notes](https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-8-30-Stable-has-been-released/ba-p/2489957)
+    - `docker pull aptplatforms/unifi:5.8.30`
 
 - 5.8.28 &rarr; [Release Notes](https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-8-28-Stable-has-been-released/ba-p/2449036)
     - `docker pull aptplatforms/unifi:5.8.28`
