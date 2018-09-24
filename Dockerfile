@@ -37,9 +37,11 @@ RUN mkdir -p /usr/lib/unifi/logs \
  && rm -f /usr/lib/unifi/logs/server.log \
  && ln -s /proc/self/fd/1 /usr/lib/unifi/logs/server.log
 
+ARG TINI_VERSION=v0.18.0
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-amd64 /tini
 COPY docker-entrypoint.sh /docker-entrypoint.sh
-ENTRYPOINT ["/docker-entrypoint.sh"]
-RUN chmod 0755 /docker-entrypoint.sh
+ENTRYPOINT ["/tini", "--", "/docker-entrypoint.sh"]
+RUN chmod 0755 /tini /docker-entrypoint.sh
 
 WORKDIR /usr/lib/unifi
 VOLUME /usr/lib/unifi/data
