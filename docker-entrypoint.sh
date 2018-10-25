@@ -18,4 +18,4 @@ portal.https.port=443
 unifi.stun.port=3478
 _EOT_
 
-java -Xmx256M -jar /usr/lib/unifi/lib/ace.jar start
+exec java -Xmx256M -jar /usr/lib/unifi/lib/ace.jar start
