@@ -8,7 +8,8 @@ ARG TINI_VERSION=v0.18.0
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 
-RUN echo "### man1 directory doesn't exist. We create it to satisfy openjdk-8-jre-headless install" \
+RUN : \
+ && echo "### man1 directory doesn't exist. We create it to satisfy openjdk-8-jre-headless install" \
  && mkdir -p /usr/share/man/man1 \
  && : \
  && echo "### Install apt-utils" \
@@ -16,7 +17,7 @@ RUN echo "### man1 directory doesn't exist. We create it to satisfy openjdk-8-jr
  && apt-get -y $APT_OPTS install apt-utils \
  && : \
  && echo "### Install support packages. Upgrade base image." \
- && apt-get -y $APT_OPTS install curl gdebi-core procps openjdk-8-jre-headless mongodb-server \
+ && apt-get -y $APT_OPTS install gdebi-core curl mongodb-server openjdk-8-jre-headless procps \
  && apt-get -y dist-upgrade \
  && apt-get -y --purge autoremove \
  && : \
@@ -27,7 +28,12 @@ RUN echo "### man1 directory doesn't exist. We create it to satisfy openjdk-8-jr
  && apt-get update \
  && gdebi -n $APT_OPTS /tmp/unifi.deb \
  && : \
- && echo "### Cleanup cache" \
+ && echo "### Install tini" \
+ && curl -sL -o /tini https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-amd64 \
+ && chmod 00755 /tini \
+ && : \
+ && echo "### Cleanup build dependencies and cache" \
+ && apt-get -y remove --purge --auto-remove apt-utils gdebi-core \
  && rm -rf /tmp/unifi.deb /var/lib/apt/lists/* /var/cache/apt/* \
  && : \
  && echo "### Link logs to stdout for Docker" \
@@ -35,11 +41,8 @@ RUN echo "### man1 directory doesn't exist. We create it to satisfy openjdk-8-jr
  && rm -f /usr/lib/unifi/logs/server.log \
  && ln -s /proc/self/fd/1 /usr/lib/unifi/logs/server.log \
  && : \
- && echo "### Install tini" \
- && curl -sL -o /tini https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-amd64 \
- && : \
- && echo "### Make files executable" \
- && chmod 0755 /tini /docker-entrypoint.sh
+ && echo "### Make entrypoint executable" \
+ && chmod 00755 /docker-entrypoint.sh
 
 ENTRYPOINT ["/tini", "--", "/docker-entrypoint.sh"]
 
