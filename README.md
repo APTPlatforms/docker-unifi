@@ -4,13 +4,12 @@
 
 [![](https://images.microbadger.com/badges/image/aptplatforms/unifi:latest.svg)](https://microbadger.com/images/aptplatforms/unifi:latest) [![](https://img.shields.io/docker/automated/aptplatforms/unifi.svg)](https://hub.docker.com/r/aptplatforms/unifi/builds/) [![](https://img.shields.io/docker/pulls/aptplatforms/unifi.svg)](https://hub.docker.com/r/aptplatforms/unifi/) [![](https://img.shields.io/docker/stars/aptplatforms/unifi.svg)](https://hub.docker.com/r/aptplatforms/unifi/)
 
-[Ubiquiti UniFi Controller](https://www.ubnt.com/download/unifi/default/default/unifi-sdn-controller-5828-debianubuntu-linux) in a Docker container. Features include:
+[Ubiquiti UniFi Controller](https://www.ubnt.com/download/unifi/default/default/unifi-sdn-controller-5929-debianubuntu-linux) in a Docker container. Features include:
 
 - As small as possible and as large as necessary.
-- FROM [Debian 9](https://hub.docker.com/\_/debian/)
+- FROM [alpine:3.7](https://hub.docker.com/\_/alpine/)
 - Uses [Tr&aelig;fik](https://traefik.io/) with [Let's Encrypt](https://letsencrypt.org/) to provide HTTPS for both the Controller interface and the builtin Captive Portal.
-- Allows reuse of an existing Tr&aelig;fik configuration instead of a
-  dedicated UniFi controller host.
+- Allows reuse of an existing Tr&aelig;fik configuration instead of a dedicated UniFi controller host.
 
 ### Summary
 

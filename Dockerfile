@@ -1,50 +1,43 @@
-FROM debian:9-slim
+FROM alpine:3.7
 LABEL maintainer="Chris Cosby <chris.cosby@aptplatforms.com>"
 
-ARG DEBIAN_FRONTEND=noninteractive
-ARG APT_OPTS="-o APT::Install-Recommends=0 -o APT::Install-Suggests=0"
-ARG UNIFI_CONTROLLER_VERSION=5.9.29
-ARG TINI_VERSION=v0.18.0
-
-COPY docker-entrypoint.sh /docker-entrypoint.sh
+# NOTE: alpine 3.7 is the last version with MongoDB 3.4. 3.8 uses MongoDB 3.6
+#       which does not work with UniFi SDN
 
 RUN : \
- && echo "### man1 directory doesn't exist. We create it to satisfy openjdk-8-jre-headless install" \
- && mkdir -p /usr/share/man/man1 \
- && : \
- && echo "### Install apt-utils" \
- && apt-get update \
- && apt-get -y $APT_OPTS install apt-utils \
- && : \
  && echo "### Install support packages. Upgrade base image." \
- && apt-get -y $APT_OPTS install gdebi-core curl mongodb-server openjdk-8-jre-headless procps \
- && apt-get -y dist-upgrade \
- && apt-get -y --purge autoremove \
+ && apk update \
+ && apk upgrade --purge \
+ && apk add openjdk8-jre-base mongodb tini \
+ && echo "### Cleanup apk cache" \
+ && rm -rf /var/cache/apk/*
+
+ARG UNIFI_SDN_VERSION=5.9.29
+
+ADD http://www.ubnt.com/downloads/unifi/$UNIFI_SDN_VERSION/UniFi.unix.zip /tmp/UniFi.unix.zip
+
+RUN : \
+ && echo "### Unpack/Install UniFi $UNIFI_SDN_VERSION" \
+ && rm -rf /usr/lib/unifi \
+ && mkdir -p /usr/lib \
+ && unzip -q /tmp/UniFi.unix.zip -d /usr/lib \
+ && ln -s ./UniFi /usr/lib/unifi \
  && : \
- && echo "### Retrieve UniFi signing keys and install the specific controller package" \
- && curl -sL -o /etc/apt/trusted.gpg.d/unifi-repo.gpg https://dl.ubnt.com/unifi/unifi-repo.gpg \
- && echo 'deb http://www.ubnt.com/downloads/unifi/debian stable ubiquiti' >/etc/apt/sources.list.d/ubnt-unifi.list \
- && curl -sL -o /tmp/unifi.deb https://dl.ubnt.com/unifi/$UNIFI_CONTROLLER_VERSION/unifi_sysvinit_all.deb \
- && apt-get update \
- && gdebi -n $APT_OPTS /tmp/unifi.deb \
- && : \
- && echo "### Install tini" \
- && curl -sL -o /tini https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-amd64 \
- && chmod 00755 /tini \
- && : \
- && echo "### Cleanup build dependencies and cache" \
- && apt-get -y remove --purge --auto-remove apt-utils gdebi-core \
- && rm -rf /tmp/unifi.deb /var/lib/apt/lists/* /var/cache/apt/* \
+ && echo "### Setup mongodb links" \
+ && rm -rf /usr/lib/unifi/bin/mongod \
+ && ln -s `which mongod` /usr/lib/unifi/bin/mongod \
  && : \
  && echo "### Link logs to stdout for Docker" \
  && mkdir -p /usr/lib/unifi/logs \
  && rm -f /usr/lib/unifi/logs/server.log \
  && ln -s /proc/self/fd/1 /usr/lib/unifi/logs/server.log \
  && : \
- && echo "### Make entrypoint executable" \
- && chmod 00755 /docker-entrypoint.sh
+ && echo "### Remove source archive" \
+ && rm -rf /tmp/UniFi.unix.zip
 
-ENTRYPOINT ["/tini", "--", "/docker-entrypoint.sh"]
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+
+ENTRYPOINT ["/sbin/tini", "--", "/bin/sh", "/docker-entrypoint.sh"]
 
 WORKDIR /usr/lib/unifi
 VOLUME /usr/lib/unifi/data
