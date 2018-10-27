@@ -7,7 +7,7 @@ LABEL maintainer="Chris Cosby <chris.cosby@aptplatforms.com>"
 RUN : \
  && echo "### Install support packages. Upgrade base image." \
  && apk upgrade --no-cache --purge \
- && apk add --no-cache openjdk8-jre-base mongodb tini \
+ && apk add --no-cache libc6-compat openjdk8-jre-base mongodb tini \
  && rm -rf /var/cache/apk/*
 
 ARG UNIFI_SDN_VERSION=5.9.29
