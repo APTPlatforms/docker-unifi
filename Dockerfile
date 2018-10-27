@@ -6,20 +6,19 @@ LABEL maintainer="Chris Cosby <chris.cosby@aptplatforms.com>"
 
 RUN : \
  && echo "### Install support packages. Upgrade base image." \
- && apk update \
- && apk upgrade --purge \
- && apk add openjdk8-jre-base mongodb tini \
- && echo "### Cleanup apk cache" \
+ && apk upgrade --no-cache --purge \
+ && apk add --no-cache openjdk8-jre-base mongodb tini \
  && rm -rf /var/cache/apk/*
 
 ARG UNIFI_SDN_VERSION=5.9.29
-
-ADD http://www.ubnt.com/downloads/unifi/$UNIFI_SDN_VERSION/UniFi.unix.zip /tmp/UniFi.unix.zip
 
 RUN : \
  && echo "### Unpack/Install UniFi $UNIFI_SDN_VERSION" \
  && rm -rf /usr/lib/unifi \
  && mkdir -p /usr/lib \
+ && apk add --no-cache --virtual .build-deps curl \
+ && curl -sL -o /tmp/UniFi.unix.zip http://www.ubnt.com/downloads/unifi/$UNIFI_SDN_VERSION/UniFi.unix.zip \
+ && apk del --no-cache --purge .build-deps \
  && unzip -q /tmp/UniFi.unix.zip -d /usr/lib \
  && ln -s ./UniFi /usr/lib/unifi \
  && : \
@@ -32,8 +31,8 @@ RUN : \
  && rm -f /usr/lib/unifi/logs/server.log \
  && ln -s /proc/self/fd/1 /usr/lib/unifi/logs/server.log \
  && : \
- && echo "### Remove source archive" \
- && rm -rf /tmp/UniFi.unix.zip
+ && echo "### Cleanup" \
+ && rm -rf /tmp/UniFi.unix.zip /var/cache/apk/*
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 
