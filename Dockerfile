@@ -12,16 +12,18 @@ RUN : \
  && echo "###    Alpine Linux :: CLEANUP" \
  && rm -rf /var/cache/apk/*
 
-ARG UNIFI_SDN_VERSION=5.9.29
+ARG UNIFI_SDN_VERSION=5.10.17
+
+COPY docker-entrypoint.sh /docker-entrypoint.sh
 
 RUN : \
+ && echo "### UniFi SDN $UNIFI_SDN_VERSION :: INSTALL" \
  && rm -rf /usr/lib/unifi \
  && mkdir -p /usr/lib \
- && echo "### UniFi SDN $UNIFI_SDN_VERSION :: GET" \
  && curl -sL -o /tmp/UniFi.unix.zip http://www.ubnt.com/downloads/unifi/$UNIFI_SDN_VERSION/UniFi.unix.zip \
- && echo "### UniFi SDN $UNIFI_SDN_VERSION :: INSTALL" \
  && unzip -q /tmp/UniFi.unix.zip -d /usr/lib \
  && ln -s ./UniFi /usr/lib/unifi \
+ && rm -rf /tmp/UniFi.unix.zip \
  && : \
  && echo "### UniFi SDN $UNIFI_SDN_VERSION :: SETUP(MongoDB)" \
  && rm -rf /usr/lib/unifi/bin/mongod \
@@ -32,12 +34,10 @@ RUN : \
  && rm -f /usr/lib/unifi/logs/server.log \
  && ln -s /proc/self/fd/1 /usr/lib/unifi/logs/server.log \
  && : \
- && echo "### UniFi SDN $UNIFI_SDN_VERSION :: CLEANUP" \
- && rm -rf /tmp/UniFi.unix.zip
+ && chmod 00555 /docker-entrypoint.sh
 
-COPY docker-entrypoint.sh /docker-entrypoint.sh
-
-ENTRYPOINT ["/sbin/tini", "--", "/bin/sh", "/docker-entrypoint.sh"]
+ENTRYPOINT ["/sbin/tini", "-v", "--"]
+CMD ["/docker-entrypoint.sh"]
 
 WORKDIR /usr/lib/unifi
 VOLUME /usr/lib/unifi/data

@@ -2,14 +2,20 @@
 
 ### Docker image
 
-[![](https://images.microbadger.com/badges/image/aptplatforms/unifi:latest.svg)](https://microbadger.com/images/aptplatforms/unifi:latest) [![](https://img.shields.io/docker/automated/aptplatforms/unifi.svg)](https://hub.docker.com/r/aptplatforms/unifi/builds/) [![](https://img.shields.io/docker/pulls/aptplatforms/unifi.svg)](https://hub.docker.com/r/aptplatforms/unifi/) [![](https://img.shields.io/docker/stars/aptplatforms/unifi.svg)](https://hub.docker.com/r/aptplatforms/unifi/)
+[![][microbadger-img]](https://microbadger.com/images/aptplatforms/unifi:latest)
+[![][shields-automated-img]](https://hub.docker.com/r/aptplatforms/unifi/builds/)
+[![][shields-pulls-img]](https://hub.docker.com/r/aptplatforms/unifi/)
+[![][shields-stars-img]](https://hub.docker.com/r/aptplatforms/unifi/)
 
-[Ubiquiti UniFi Controller](https://www.ubnt.com/download/unifi/default/default/unifi-sdn-controller-5929-debianubuntu-linux) in a Docker container. Features include:
+
+[Ubiquiti UniFi Controller] in a Docker container. Features include:
 
 - As small as possible and as large as necessary.
-- FROM [alpine:3.7](https://hub.docker.com/\_/alpine/)
-- Uses [Tr&aelig;fik](https://traefik.io/) with [Let's Encrypt](https://letsencrypt.org/) to provide HTTPS for both the Controller interface and the builtin Captive Portal.
-- Allows reuse of an existing Tr&aelig;fik configuration instead of a dedicated UniFi controller host.
+- `FROM` [alpine:3.7]
+- Uses [Tr&aelig;fik] with [Let's Encrypt] to provide HTTPS for both the
+  Controller interface and the builtin Captive Portal.
+- Allows reuse of an existing Tr&aelig;fik configuration instead of a
+  dedicated UniFi controller host.
 
 ### Summary
 
@@ -20,21 +26,25 @@
 
 ### Docker Tags
 
-- 5.9.29 (latest) &rarr; [Release Notes](https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-9-29-Stable-has-been-released/ba-p/2516852)
+- 5.10.17 (latest) &rarr; [Release Notes 5.10.17]
+    - `docker pull aptplatforms/unifi:5.10.17`
+
+- 5.9.29 &rarr; [Release Notes 5.9.29]
     - `docker pull aptplatforms/unifi:5.9.29`
 
-- 5.8.30 &rarr; [Release Notes](https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-8-30-Stable-has-been-released/ba-p/2489957)
+- 5.8.30 &rarr; [Release Notes 5.8.30]
     - `docker pull aptplatforms/unifi:5.8.30`
 
-- 5.8.28 &rarr; [Release Notes](https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-8-28-Stable-has-been-released/ba-p/2449036)
+- 5.8.28 &rarr; [Release Notes 5.8.28]
     - `docker pull aptplatforms/unifi:5.8.28`
 
-- 5.8.24 &rarr; [Release Notes](https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-8-24-Stable-has-been-released/ba-p/2404580)
+- 5.8.24 &rarr; [Release Notes 5.8.24]
     - `docker pull aptplatforms/unifi:5.8.24`
 
-- 5.7.23 &rarr; [Release Notes](https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-5-7-23-Stable-has-been-released/ba-p/2318813)
+- 5.7.23 &rarr; [Release Notes 5.7.23]
     - `docker pull aptplatforms/unifi:5.7.23`
-    - 5.7.23 is deprecated and probably won't work with the Tr&aelig;fik configuration unless you want to change docker-entrypoint.sh yourself and build a new image.
+    - 5.7.23 is deprecated and probably won't work with the Tr&aelig;fik
+      configuration unless you want to change `docker-entrypoint.sh` yourself and build a new image.
 
 ### Prerequisites
 
@@ -45,9 +55,9 @@ If you have a firewall, unblock the following ports, according to your needs :
 | Service | Container | Protocol | Port | Description |
 | ------- | --------- | -------- | ---- | ----------- |
 | unifi.http.port | unifi | TCP | 8080 | UAP Inform port. Open to wherever your UniFi devices are installed. |
-| STUN | unifi | TCP | 3478 | [Session Traversal Utilities for NAT](https://help.ubnt.com/hc/en-us/articles/115015457668-UniFi-Troubleshooting-STUN-Communication-Errors#whatisstun). Open to wherever your UniFi devices are installed. |
-| HTTP | Tr&aelig;fik | TCP | 80 | Open to 0.0.0.0/0 for Let's Encrypt |
-| HTTPS | Tr&aelig;fik | TCP | 443 | Open to 0.0.0.0/0 for Let's Encrypt |
+| STUN | unifi | TCP | 3478 | [Session Traversal Utilities for NAT]. Open to wherever your UniFi devices are installed. |
+| HTTP | Tr&aelig;fik | TCP | 80 | Open to 0.0.0.0/0 for [Let's Encrypt] |
+| HTTPS | Tr&aelig;fik | TCP | 443 | Open to 0.0.0.0/0 for [Let's Encrypt] |
 
 #### DNS records
 
@@ -76,9 +86,9 @@ Or you can use CNAME records like this :
 
 #### 1 - Prepare your environment
 
-:bulb: The reverse proxy used in this setup is [Tr&aelig;fik](https://traefik.io/), but you can use the solution of your choice (Nginx, Apache, Haproxy, Caddy, H2O...etc).
+:bulb: The reverse proxy used in this setup is [Tr&aelig;fik], but you can use the solution of your choice (Nginx, Apache, Haproxy, Caddy, H2O...etc).
 
-:warning: This docker image may not work with some hardened Linux distribution using security-enhancing kernel patches like GrSecurity, please use a [supported platform](https://docs.docker.com/install/#supported-platforms).
+:warning: This docker image may not work with some hardened Linux distribution using security-enhancing kernel patches like GrSecurity, please use a [supported platform].
 
 ```bash
 # Create a new docker network for Traefik (IPv4 only)
@@ -99,9 +109,9 @@ Edit `docker-compose.yml` and `.env` and `traefik.toml`, adapt to your needs.
 
 #### 3 - Start services
 
-Start all services :
+Start all services.
 
-```
+```bash
 docker-compose up -d
 ```
 
@@ -114,3 +124,22 @@ Visit <https://traefik.example.com/> to see the Tr&aelig;fik dashboard.
     - `Guest Control` &rarr; `Guest Portal` &rarr; `Enable Guest Portal = True`.
     - `Guest Control` &rarr; `Redirection` &rarr; `Use Secure Portal = True`.
     - `Guest Control` &rarr; `Redirection` &rarr; `Redirect using hostname = portal.example.com`.
+
+[microbadger-img]: https://images.microbadger.com/badges/image/aptplatforms/unifi:latest.svg
+[shields-automated-img]: https://img.shields.io/docker/automated/aptplatforms/unifi.svg
+[shields-pulls-img]: https://img.shields.io/docker/pulls/aptplatforms/unifi.svg
+[shields-stars-img]: https://img.shields.io/docker/stars/aptplatforms/unifi.svg
+
+[alpine:3.7]: https://hub.docker.com/\_/alpine/
+[Tr&aelig;fik]: https://traefik.io/
+[Let's Encrypt]: https://letsencrypt.org/
+[Session Traversal Utilities for NAT]: https://help.ubnt.com/hc/en-us/articles/115015457668-UniFi-Troubleshooting-STUN-Communication-Errors#whatisstun
+[supported platform]: https://docs.docker.com/install/#supported-platforms
+
+[Ubiquiti UniFi Controller]: https://www.ui.com/download/unifi/default/default/unifi-network-controller-51017-debianubuntu-linux-and-unifi-cloud-key
+[Release Notes 5.10.17]: https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-Network-Controller-5-10-17-Stable-has-been-released/ba-p/2676018
+[Release Notes 5.9.29]: https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-9-29-Stable-has-been-released/ba-p/2516852
+[Release Notes 5.8.30]: https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-8-30-Stable-has-been-released/ba-p/2489957
+[Release Notes 5.8.28]: https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-8-28-Stable-has-been-released/ba-p/2449036
+[Release Notes 5.8.24]: https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-8-24-Stable-has-been-released/ba-p/2404580
+[Release Notes 5.7.23]: https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-5-7-23-Stable-has-been-released/ba-p/2318813
