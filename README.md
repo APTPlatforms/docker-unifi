@@ -26,7 +26,10 @@
 
 ### Docker Tags
 
-- 5.10.17 (latest) &rarr; [Release Notes 5.10.17]
+- 5.10.19 (latest) &rarr; [Release Notes 5.10.19]
+    - `docker pull aptplatforms/unifi:5.10.19`
+
+- 5.10.17 &rarr; [Release Notes 5.10.17]
     - `docker pull aptplatforms/unifi:5.10.17`
 
 - 5.9.29 &rarr; [Release Notes 5.9.29]
@@ -136,7 +139,8 @@ Visit <https://traefik.example.com/> to see the Tr&aelig;fik dashboard.
 [Session Traversal Utilities for NAT]: https://help.ubnt.com/hc/en-us/articles/115015457668-UniFi-Troubleshooting-STUN-Communication-Errors#whatisstun
 [supported platform]: https://docs.docker.com/install/#supported-platforms
 
-[Ubiquiti UniFi Controller]: https://www.ui.com/download/unifi/default/default/unifi-network-controller-51017-debianubuntu-linux-and-unifi-cloud-key
+[Ubiquiti UniFi Controller]: https://www.ui.com/download/unifi/default/default/unifi-network-controller-51019-debianubuntu-linux-and-unifi-cloud-key
+[Release Notes 5.10.19]: https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-Network-Controller-5-10-19-Stable-has-been-released/ba-p/2695209
 [Release Notes 5.10.17]: https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-Network-Controller-5-10-17-Stable-has-been-released/ba-p/2676018
 [Release Notes 5.9.29]: https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-9-29-Stable-has-been-released/ba-p/2516852
 [Release Notes 5.8.30]: https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-8-30-Stable-has-been-released/ba-p/2489957
