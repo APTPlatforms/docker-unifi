@@ -1,18 +1,19 @@
 FROM alpine:3.7
 LABEL maintainer="Chris Cosby <chris.cosby@aptplatforms.com>"
 
+ARG UNIFI_SDN_VERSION=5.10.21
+
 # NOTE: alpine:3.7 is the last version with MongoDB-3.4.
 #       alpine:3.8+ uses MongoDB-3.6 which does not work with UniFi SDN.
 
 RUN : \
  && echo "###    Alpine Linux :: UPGRADE" \
- && apk upgrade --no-cache --purge \
+ && apk update \
+ && apk upgrade --purge \
  && echo "###    Alpine Linux :: UniFi SDN support" \
- && apk add --no-cache curl libc6-compat openjdk8-jre-base mongodb tini \
+ && apk add curl libc6-compat nss openjdk8-jre-base mongodb tini \
  && echo "###    Alpine Linux :: CLEANUP" \
  && rm -rf /var/cache/apk/*
-
-ARG UNIFI_SDN_VERSION=5.10.19
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 

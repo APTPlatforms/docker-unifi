@@ -26,25 +26,28 @@
 
 ### Docker Tags
 
-- 5.10.19 (latest) &rarr; [Release Notes 5.10.19]
+- 5.10.21 (latest) &rarr; [Release Notice 5.10.21]
+    - `docker pull aptplatforms/unifi:5.10.21`
+
+- 5.10.19 &rarr; [Release Notice 5.10.19]
     - `docker pull aptplatforms/unifi:5.10.19`
 
-- 5.10.17 &rarr; [Release Notes 5.10.17]
+- 5.10.17 &rarr; [Release Notice 5.10.17]
     - `docker pull aptplatforms/unifi:5.10.17`
 
-- 5.9.29 &rarr; [Release Notes 5.9.29]
+- 5.9.29 &rarr; [Release Notice 5.9.29]
     - `docker pull aptplatforms/unifi:5.9.29`
 
-- 5.8.30 &rarr; [Release Notes 5.8.30]
+- 5.8.30 &rarr; [Release Notice 5.8.30]
     - `docker pull aptplatforms/unifi:5.8.30`
 
-- 5.8.28 &rarr; [Release Notes 5.8.28]
+- 5.8.28 &rarr; [Release Notice 5.8.28]
     - `docker pull aptplatforms/unifi:5.8.28`
 
-- 5.8.24 &rarr; [Release Notes 5.8.24]
+- 5.8.24 &rarr; [Release Notice 5.8.24]
     - `docker pull aptplatforms/unifi:5.8.24`
 
-- 5.7.23 &rarr; [Release Notes 5.7.23]
+- 5.7.23 &rarr; [Release Notice 5.7.23]
     - `docker pull aptplatforms/unifi:5.7.23`
     - 5.7.23 is deprecated and probably won't work with the Tr&aelig;fik
       configuration unless you want to change `docker-entrypoint.sh` yourself and build a new image.
@@ -140,10 +143,11 @@ Visit <https://traefik.example.com/> to see the Tr&aelig;fik dashboard.
 [supported platform]: https://docs.docker.com/install/#supported-platforms
 
 [Ubiquiti UniFi Controller]: https://www.ui.com/download/unifi/default/default/unifi-network-controller-51019-debianubuntu-linux-and-unifi-cloud-key
-[Release Notes 5.10.19]: https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-Network-Controller-5-10-19-Stable-has-been-released/ba-p/2695209
-[Release Notes 5.10.17]: https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-Network-Controller-5-10-17-Stable-has-been-released/ba-p/2676018
-[Release Notes 5.9.29]: https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-9-29-Stable-has-been-released/ba-p/2516852
-[Release Notes 5.8.30]: https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-8-30-Stable-has-been-released/ba-p/2489957
-[Release Notes 5.8.28]: https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-8-28-Stable-has-been-released/ba-p/2449036
-[Release Notes 5.8.24]: https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-8-24-Stable-has-been-released/ba-p/2404580
-[Release Notes 5.7.23]: https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-5-7-23-Stable-has-been-released/ba-p/2318813
+[Release Notice 5.10.21]: https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-Network-Controller-5-10-21-Stable-has-been-released/ba-p/2741854
+[Release Notice 5.10.19]: https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-Network-Controller-5-10-19-Stable-has-been-released/ba-p/2695209
+[Release Notice 5.10.17]: https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-Network-Controller-5-10-17-Stable-has-been-released/ba-p/2676018
+[Release Notice 5.9.29]: https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-9-29-Stable-has-been-released/ba-p/2516852
+[Release Notice 5.8.30]: https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-8-30-Stable-has-been-released/ba-p/2489957
+[Release Notice 5.8.28]: https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-8-28-Stable-has-been-released/ba-p/2449036
+[Release Notice 5.8.24]: https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-8-24-Stable-has-been-released/ba-p/2404580
+[Release Notice 5.7.23]: https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-5-7-23-Stable-has-been-released/ba-p/2318813
