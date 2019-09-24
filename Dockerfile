@@ -1,7 +1,7 @@
 FROM alpine:3.7
 LABEL maintainer="Chris Cosby <chris.cosby@aptplatforms.com>"
 
-ARG UNIFI_SDN_VERSION=5.10.25
+ARG UNIFI_SDN_VERSION=5.11.46
 
 # NOTE: alpine:3.7 is the last version with MongoDB-3.4.
 #       alpine:3.8+ uses MongoDB-3.6 which does not work with UniFi SDN.
