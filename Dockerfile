@@ -1,44 +1,53 @@
-FROM alpine:3.7
+FROM debian:9-slim
 LABEL maintainer="Chris Cosby <chris.cosby@aptplatforms.com>"
 
-ARG UNIFI_SDN_VERSION=5.11.50
+ARG DEBIAN_FRONTEND=noninteractive
+ARG APT_OPTS="-o APT::Install-Recommends=0 -o APT::Install-Suggests=0"
+ARG UNIFI_CONTROLLER_VERSION=5.13.32
+ARG TINI_VERSION=v0.19.0
 
-# NOTE: alpine:3.7 is the last version with MongoDB-3.4.
-#       alpine:3.8+ uses MongoDB-3.6 which does not work with UniFi SDN.
-
-RUN : \
- && echo "###    Alpine Linux :: UPGRADE" \
- && apk update \
- && apk upgrade --purge \
- && echo "###    Alpine Linux :: UniFi SDN support" \
- && apk add curl libc6-compat nss openjdk8-jre-base mongodb tini \
- && echo "###    Alpine Linux :: CLEANUP" \
- && rm -rf /var/cache/apk/*
-
-COPY docker-entrypoint.sh /docker-entrypoint.sh
-
-RUN : \
- && echo "### UniFi SDN $UNIFI_SDN_VERSION :: INSTALL" \
- && rm -rf /usr/lib/unifi \
- && mkdir -p /usr/lib \
- && curl -sL -o /tmp/UniFi.unix.zip http://www.ubnt.com/downloads/unifi/$UNIFI_SDN_VERSION/UniFi.unix.zip \
- && unzip -q /tmp/UniFi.unix.zip -d /usr/lib \
- && ln -s ./UniFi /usr/lib/unifi \
- && rm -rf /tmp/UniFi.unix.zip \
- && : \
- && echo "### UniFi SDN $UNIFI_SDN_VERSION :: SETUP(MongoDB)" \
- && rm -rf /usr/lib/unifi/bin/mongod \
- && ln -s `which mongod` /usr/lib/unifi/bin/mongod \
- && : \
- && echo "### UniFi SDN $UNIFI_SDN_VERSION :: SETUP(LOGS)" \
+RUN set -ex \
+ && echo "### Install apt-utils" \
+ && apt-get update \
+ && apt-get -y $APT_OPTS install apt-utils \
+ && apt-get -y $APT_OPTS dist-upgrade \
+ && apt-get -y $APT_OPTS install curl gnupg2 ca-certificates apt-transport-https \
+# && :
+#RUN set -ex \
+ && echo "### Install mongoDB packages." \
+ && curl -sL https://www.mongodb.org/static/pgp/server-3.6.asc | apt-key add - \
+ && echo "deb http://repo.mongodb.org/apt/debian stretch/mongodb-org/3.6 main" > /etc/apt/sources.list.d/mongodb-org-3.6.list \
+ && apt-get update \
+ && apt-get -y $APT_OPTS install mongodb-org-server mongodb-org-tools \
+# && :
+#RUN set -ex \
+ && echo "### Install UniFi Controller package" \
+ && mkdir -p /usr/share/man/man1 \
+ && curl -sL -o /etc/apt/trusted.gpg.d/unifi-repo.gpg https://dl.ui.com/unifi/unifi-repo.gpg \
+ && echo 'deb https://www.ui.com/downloads/unifi/debian stable ubiquiti' >/etc/apt/sources.list.d/ubnt-unifi.list \
+ && apt-get update \
+ && apt-get -y $APT_OPTS install bsd-mailx openjdk-8-jre-headless procps unifi \
+# && :
+#RUN set -ex \
+ && apt-get -y $APT_OPTS --purge autoremove \
+ && apt-get clean \
+ && find /var/lib/apt/lists/ /var/cache/apt/ -type f -exec rm -rf {} + \
+# && :
+#RUN set -ex \
+ && echo "### Install tini" \
+ && curl -sL -o /sbin/tini https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-amd64 \
+ && chmod 00755 /sbin/tini \
+# && :
+#RUN set -ex \
+ && echo "### Link logs to stdout for Docker" \
  && mkdir -p /usr/lib/unifi/logs \
  && rm -f /usr/lib/unifi/logs/server.log \
  && ln -s /proc/self/fd/1 /usr/lib/unifi/logs/server.log \
- && : \
- && chmod 00555 /docker-entrypoint.sh
+ && :
 
-ENTRYPOINT ["/sbin/tini", "-v", "--"]
-CMD ["/docker-entrypoint.sh"]
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+ENTRYPOINT ["tini", "--"]
+CMD ["sh", "/docker-entrypoint.sh"]
 
 WORKDIR /usr/lib/unifi
 VOLUME /usr/lib/unifi/data

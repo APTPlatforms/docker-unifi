@@ -11,7 +11,7 @@
 [Ubiquiti UniFi Controller] in a Docker container. Features include:
 
 - As small as possible and as large as necessary.
-- `FROM` [alpine:3.7]
+- `FROM` [debian:9-slim]
 - Uses [Tr&aelig;fik] with [Let's Encrypt] to provide HTTPS for both the
   Controller interface and the builtin Captive Portal.
 - Allows reuse of an existing Tr&aelig;fik configuration instead of a
@@ -26,7 +26,10 @@
 
 ### Docker Tags
 
-- 5.11.50 (latest) &rarr; [Release Notice 5.11.50]
+- 5.13.32 (latest) &rarr; [Release Notice 5.13.32]
+    - `docker pull aptplatforms/unifi:5.13.32`
+
+- 5.11.50 &rarr; [Release Notice 5.11.50]
     - `docker pull aptplatforms/unifi:5.11.50`
 
 - 5.11.46 &rarr; [Release Notice 5.11.46]
@@ -145,13 +148,14 @@ Visit <https://traefik.example.com/> to see the Tr&aelig;fik dashboard.
 [shields-pulls-img]: https://img.shields.io/docker/pulls/aptplatforms/unifi.svg
 [shields-stars-img]: https://img.shields.io/docker/stars/aptplatforms/unifi.svg
 
-[alpine:3.7]: https://hub.docker.com/\_/alpine/
+[debian:9-slim]: https://hub.docker.com/\_/debian/
 [Tr&aelig;fik]: https://traefik.io/
 [Let's Encrypt]: https://letsencrypt.org/
 [Session Traversal Utilities for NAT]: https://help.ubnt.com/hc/en-us/articles/115015457668-UniFi-Troubleshooting-STUN-Communication-Errors#whatisstun
 [supported platform]: https://docs.docker.com/install/#supported-platforms
 
-[Ubiquiti UniFi Controller]: https://www.ui.com/download/unifi/default/default/unifi-network-controller-51150-debianubuntu-linux-and-unifi-cloud-key
+[Ubiquiti UniFi Controller]: https://www.ui.com/download/unifi/default/default/unifi-network-controller-51332-debianubuntu-linux-and-unifi-cloud-key
+[Release Notice 5.13.32]: https://community.ui.com/releases/UniFi-Network-Controller-5-13-32/85eee834-c987-4875-8de2-51c6842d7bd3
 [Release Notice 5.11.50]: https://community.ui.com/releases/UniFi-Network-Controller-5-11-50/1728a1f1-f0a8-45dd-a2e2-95abcfc50dab
 [Release Notice 5.11.46]: https://community.ui.com/releases/UniFi-Network-Controller-5-11-46/1984aaf0-7243-4257-af83-70126714613e
 [Release Notice 5.10.25]: https://community.ui.com/releases/UniFi-Network-Controller-Stable-5-10-25/fc76945d-c918-4d8d-8cd1-094d05287f45
