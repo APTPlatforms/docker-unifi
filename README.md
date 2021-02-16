@@ -26,7 +26,10 @@
 
 ### Docker Tags
 
-- 6.0.28  &rarr; [Release Notice 6.0.28]
+- 6.0.45 (latest) &rarr; [Release Notice 6.0.45]
+    - `docker pull aptplatforms/unifi:6.0.45`
+
+- 6.0.28 &rarr; [Release Notice 6.0.28]
     - `docker pull aptplatforms/unifi:6.0.28`
 
 - 5.13.32 &rarr; [Release Notice 5.13.32]
@@ -158,6 +161,7 @@ Visit <https://traefik.example.com/> to see the Tr&aelig;fik dashboard.
 [supported platform]: https://docs.docker.com/install/#supported-platforms
 
 [Ubiquiti UniFi Controller]: https://www.ui.com/download/unifi/default/default/unifi-network-controller-51332-debianubuntu-linux-and-unifi-cloud-key
+[Release Notice 6.0.45]: https://community.ui.com/releases/UniFi-Network-Controller-6-0-45/8d3b98e1-b9d4-4ab3-b8da-721dbe9ab842
 [Release Notice 6.0.28]: https://community.ui.com/releases/UniFi-Network-Controller-6-0-28/23c77a99-0957-449a-b3c0-58a37d4df81f
 [Release Notice 5.13.32]: https://community.ui.com/releases/UniFi-Network-Controller-5-13-32/85eee834-c987-4875-8de2-51c6842d7bd3
 [Release Notice 5.11.50]: https://community.ui.com/releases/UniFi-Network-Controller-5-11-50/1728a1f1-f0a8-45dd-a2e2-95abcfc50dab
