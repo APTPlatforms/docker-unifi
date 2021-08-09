@@ -26,7 +26,10 @@
 
 ### Docker Tags
 
-- 6.0.45 (latest) &rarr; [Release Notice 6.0.45]
+- 6.2.26 (latest) &rarr; [Release Notice 6.2.26]
+    - `docker pull aptplatforms/unifi:6.2.26`
+
+- 6.0.45 &rarr; [Release Notice 6.0.45]
     - `docker pull aptplatforms/unifi:6.0.45`
 
 - 6.0.28 &rarr; [Release Notice 6.0.28]
@@ -160,7 +163,8 @@ Visit <https://traefik.example.com/> to see the Tr&aelig;fik dashboard.
 [Session Traversal Utilities for NAT]: https://help.ubnt.com/hc/en-us/articles/115015457668-UniFi-Troubleshooting-STUN-Communication-Errors#whatisstun
 [supported platform]: https://docs.docker.com/install/#supported-platforms
 
-[Ubiquiti UniFi Controller]: https://www.ui.com/download/unifi/default/default/unifi-network-controller-51332-debianubuntu-linux-and-unifi-cloud-key
+[Ubiquiti UniFi Controller]: https://www.ui.com/download/unifi/default/default/unifi-network-application-6226-debianubuntu-linux-and-unifi-cloud-key
+[Release Notice 6.2.26]: https://community.ui.com/releases/UniFi-Network-Application-6-2-26/0dfcbc77-8a4f-4e20-bb93-07bbb0237e3a
 [Release Notice 6.0.45]: https://community.ui.com/releases/UniFi-Network-Controller-6-0-45/8d3b98e1-b9d4-4ab3-b8da-721dbe9ab842
 [Release Notice 6.0.28]: https://community.ui.com/releases/UniFi-Network-Controller-6-0-28/23c77a99-0957-449a-b3c0-58a37d4df81f
 [Release Notice 5.13.32]: https://community.ui.com/releases/UniFi-Network-Controller-5-13-32/85eee834-c987-4875-8de2-51c6842d7bd3
