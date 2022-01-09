@@ -3,7 +3,7 @@ LABEL maintainer="Chris Cosby <chris.cosby@aptplatforms.com>"
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG APT_OPTS="-o APT::Install-Recommends=0 -o APT::Install-Suggests=0"
-ARG UNIFI_CONTROLLER_VERSION=6.2.26
+ARG UNIFI_CONTROLLER_VERSION=6.5.55
 ARG TINI_VERSION=v0.19.0
 
 RUN set -ex \
