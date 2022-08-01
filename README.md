@@ -32,52 +32,6 @@
 - 6.5.55 &rarr; [Release Notice 6.5.55]
     - `docker pull aptplatforms/unifi:6.5.55`
 
-- 6.2.26 &rarr; [Release Notice 6.2.26]
-    - `docker pull aptplatforms/unifi:6.2.26`
-
-- 6.0.45 &rarr; [Release Notice 6.0.45]
-    - `docker pull aptplatforms/unifi:6.0.45`
-
-- 6.0.28 &rarr; [Release Notice 6.0.28]
-    - `docker pull aptplatforms/unifi:6.0.28`
-
-- 5.13.32 &rarr; [Release Notice 5.13.32]
-    - `docker pull aptplatforms/unifi:5.13.32`
-
-- 5.11.50 &rarr; [Release Notice 5.11.50]
-    - `docker pull aptplatforms/unifi:5.11.50`
-
-- 5.11.46 &rarr; [Release Notice 5.11.46]
-    - `docker pull aptplatforms/unifi:5.11.46`
-
-- 5.10.25 &rarr; [Release Notice 5.10.25]
-    - `docker pull aptplatforms/unifi:5.10.25`
-
-- 5.10.21 &rarr; [Release Notice 5.10.21]
-    - `docker pull aptplatforms/unifi:5.10.21`
-
-- 5.10.19 &rarr; [Release Notice 5.10.19]
-    - `docker pull aptplatforms/unifi:5.10.19`
-
-- 5.10.17 &rarr; [Release Notice 5.10.17]
-    - `docker pull aptplatforms/unifi:5.10.17`
-
-- 5.9.29 &rarr; [Release Notice 5.9.29]
-    - `docker pull aptplatforms/unifi:5.9.29`
-
-- 5.8.30 &rarr; [Release Notice 5.8.30]
-    - `docker pull aptplatforms/unifi:5.8.30`
-
-- 5.8.28 &rarr; [Release Notice 5.8.28]
-    - `docker pull aptplatforms/unifi:5.8.28`
-
-- 5.8.24 &rarr; [Release Notice 5.8.24]
-    - `docker pull aptplatforms/unifi:5.8.24`
-
-- 5.7.23 &rarr; [Release Notice 5.7.23]
-    - `docker pull aptplatforms/unifi:5.7.23`
-    - 5.7.23 is deprecated and probably won't work with the Tr&aelig;fik
-      configuration unless you want to change `docker-entrypoint.sh` yourself and build a new image.
 
 ### Prerequisites
 
@@ -172,18 +126,3 @@ Visit <https://traefik.example.com/> to see the Tr&aelig;fik dashboard.
 [Ubiquiti UniFi Controller]: https://community.ui.com/releases/r/network/7.1.68
 [Release Notice 7.1.68]: https://community.ui.com/releases/UniFi-Network-Application-7-1-68/30df65ee-9adf-44da-ba0c-f30766c2d874
 [Release Notice 6.5.55]: https://community.ui.com/releases/UniFi-Network-Application-6-5-55/48c64137-4a4a-41f7-b7e4-3bee505ae16e
-[Release Notice 6.2.26]: https://community.ui.com/releases/UniFi-Network-Application-6-2-26/0dfcbc77-8a4f-4e20-bb93-07bbb0237e3a
-[Release Notice 6.0.45]: https://community.ui.com/releases/UniFi-Network-Controller-6-0-45/8d3b98e1-b9d4-4ab3-b8da-721dbe9ab842
-[Release Notice 6.0.28]: https://community.ui.com/releases/UniFi-Network-Controller-6-0-28/23c77a99-0957-449a-b3c0-58a37d4df81f
-[Release Notice 5.13.32]: https://community.ui.com/releases/UniFi-Network-Controller-5-13-32/85eee834-c987-4875-8de2-51c6842d7bd3
-[Release Notice 5.11.50]: https://community.ui.com/releases/UniFi-Network-Controller-5-11-50/1728a1f1-f0a8-45dd-a2e2-95abcfc50dab
-[Release Notice 5.11.46]: https://community.ui.com/releases/UniFi-Network-Controller-5-11-46/1984aaf0-7243-4257-af83-70126714613e
-[Release Notice 5.10.25]: https://community.ui.com/releases/UniFi-Network-Controller-Stable-5-10-25/fc76945d-c918-4d8d-8cd1-094d05287f45
-[Release Notice 5.10.21]: https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-Network-Controller-5-10-21-Stable-has-been-released/ba-p/2741854
-[Release Notice 5.10.19]: https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-Network-Controller-5-10-19-Stable-has-been-released/ba-p/2695209
-[Release Notice 5.10.17]: https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-Network-Controller-5-10-17-Stable-has-been-released/ba-p/2676018
-[Release Notice 5.9.29]: https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-9-29-Stable-has-been-released/ba-p/2516852
-[Release Notice 5.8.30]: https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-8-30-Stable-has-been-released/ba-p/2489957
-[Release Notice 5.8.28]: https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-8-28-Stable-has-been-released/ba-p/2449036
-[Release Notice 5.8.24]: https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-SDN-Controller-5-8-24-Stable-has-been-released/ba-p/2404580
-[Release Notice 5.7.23]: https://community.ubnt.com/t5/UniFi-Updates-Blog/UniFi-5-7-23-Stable-has-been-released/ba-p/2318813
